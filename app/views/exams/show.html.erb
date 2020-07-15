@@ -29,6 +29,34 @@
   <div class="col-md-12" data-view3d='wrapper'>
   </div>
 </div>
+    <script>
+      var renderer = new THREE.WebGLRenderer();
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      document.body.appendChild( renderer.domElement );
+
+      var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
+      camera.position.set( 0, 0, 100 );
+      camera.lookAt( 0, 0, 0 );
+
+      var scene = new THREE.Scene();
+      //create a blue LineBasicMaterial
+      var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+      var points = [];
+      points.push( new THREE.Vector3(a1, a2 ));
+      points.push( new THREE.Vector3(Math.cos(<%=@exam.point_or.x%>), Math.cos(<%=@exam.point_or.y%>) ) );
+      points.push( new THREE.Vector3(Math.cos(<%=@exam.point_n.x%>), Math.cos(<%=@exam.point_n.y%>) ) );
+      //points.push( new THREE.Vector3(<%=@exam.point_a.x%>, <%=@exam.point_a.y%>) );
+      a1 = (<%=@exam.point_po.x%>*<%=@exam.point_or.x%>)+(<%=@exam.point_po.y%>*<%=@exam.point_or.y%>)
+      a2 = (<%=@exam.point_n.x%>*<%=@exam.point_a.y%>)+(<%=@exam.point_n.y%>*<%=@exam.point_a.y%>)
+      //teta = (a1*a2)/(Math.sqrt(a1**2)*Math.sqrt(a2**2))
+
+      
+
+      var geometry = new THREE.BufferGeometry().setFromPoints( points );
+      var line = new THREE.Line( geometry, material );
+      scene.add( line );
+      renderer.render( scene, camera );
+    </script>
 
 <div class="row">
   <div class="col-md-12">

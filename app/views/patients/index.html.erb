@@ -5,7 +5,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Nome</th>
       <th></th>
     </tr>
   </thead>
@@ -18,7 +18,7 @@
           <div class="float-right">
           <%= link_to 'Show', patient, class: "btn btn-sm btn-secondary" %>
           <%= link_to 'Edit', edit_patient_path(patient), class: "btn btn-sm btn-secondary" %>
-          <%= link_to 'Destroy', patient, class: "btn btn-sm btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+          <a href="javascript:void(0)" onclick="apaga('<%=patient.id%>')">Excluir</a>
           </div>
         </td>
       </tr>

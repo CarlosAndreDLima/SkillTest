@@ -1,3 +1,10 @@
+<script>
+  function apaga(i) {
+    if (confirm("Tem certeza que deseja apagar a linha " + i + "?")) {
+      $("<%@patient%>" + i).remove();
+    }
+  }
+</script>
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -19,12 +26,10 @@
   <tbody data-exams='exams' data-exams-patient-id='<%= @patient.id %>'>
   </tbody>
 </table>
-
-
 <%= link_to 'Edit', edit_patient_path(@patient), class: "btn btn-secondary float-right" %>
 <%= button_tag 'Add Exam', type: 'button', class: "btn btn-primary float-right", data: { exams: 'btn-create'} %>
 <%= link_to 'Back', patients_path, class: "btn btn-secondary"  %>
-
+<a href="javascript:void(0)" onclick="apaga('<%=@patient.id%>')">Excluir</a>
 
 <div class="modal" tabindex="-1" role="dialog" data-exams='modal'>
   <div class="modal-dialog" role="document">

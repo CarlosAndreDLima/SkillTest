@@ -1,5 +1,7 @@
 {
   "name": "maxillary_depth",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "three": "^0.118.3"
+  }
 }

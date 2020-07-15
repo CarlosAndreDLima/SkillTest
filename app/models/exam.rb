@@ -12,6 +12,19 @@ class Exam < ApplicationRecord
   accepts_nested_attributes_for :point_a
 
   def maxillary_depth_angle
-    return nil if self.point_po.x.nil? or self.point_po.y.nil? or self.point_or.x.nil? or self.point_or.y.nil? or self.point_n.x.nil? or self.point_n.y.nil? or self.point_a.x.nil? or self.point_a.y.nil?
+    # A fórmula para determinar o ângulo entre dois planos é dada por: sejam n1 e n2 planos definidos no espaço.
+    # teta será o angulo formado através da fórmula (n1*n2)/raiz(n1^2)*raiz(n2^2).
+    # O cos teta define o angulo formado pelos planos.
+
+    a1 = (self.point_po.x*self.point_or.x)+(self.point_po.y*self.point_or.y)
+    a2 = (self.point_n.x*self.point_a.x)+(self.point_n.y*self.point_a.y)
+    teta = (a1*a2)/(Math.sqrt(a1**2)*Math.sqrt(a2**2))
+    if Math.cos(teta) > 0
+       return 90+(Math.cos(teta))
+     elsif Math.cos(teta) < 0
+       return 90-(Math.cos(teta))
+     else
+       return 0
+    end
   end
 end
